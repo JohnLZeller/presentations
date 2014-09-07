@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>KEEP CALM AND SHIP IT - a presentation by John Zeller</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Firefox OS Color Palette - Orange: #E66000 - Light Orange: #FF9500 - Blue: #00539F - Light Blue: #0095DD - Brown: #330000 - Charcoal: #4D4E53 -->
+
+			<!-- Highlight Colors - Red: #ff2c2d - Blue: #1b91ff - Green: #17ff2e -->
+			<div class="slides">
+				<section  data-background="#E66000">
+					<h1>KEEP CALM AND SHIP IT</h1>
+					<h3>My summer in Mozilla Release Engineering</h3>
+					<p>
+						<small>Created by <a href="http://www.johnzeller.com">John Zeller</a> / IRC: zeller</a></small>
+					</p>
+					<aside class="notes">
+						Hello my name is John Zeller, summer intern
+					</aside>
+				</section>
+
+				<section data-background="#00539F">
+					<h2>What should you expect?</h2>
+					<ul>
+						<li class="fragment roll-in">First, a little about myself</li>
+						<li class="fragment roll-in">What is Release Engineering?</li>
+						<li class="fragment roll-in">Projects I contributed to</li>
+						<li class="fragment roll-in">Conclusion</li>
+						<li class="fragment roll-in">Questions</li>
+					</ul>
+					<aside class="notes">
+						Few things I want to cover during this talk
+						Layout a roadmap
+					</aside>
+				</section>
+
+				<section data-background="#0095DD">
+					<section>
+						<h2>First</h2>
+						<p>
+							Who is John Zeller?
+						</p>
+						<img src="pictures/unicornglasshole.jpg" height="400">
+					</section>
+					<section>
+						<p>
+							<h2>I'm a student</h2>
+							<img style="background-color: white;" height="200" src="pictures/OSUlogo.png">
+							<img height="200" src="pictures/OSUbeaver.jpg"><br>
+							<img height="300" src="pictures/OSUcampus.jpg">
+						</p>
+						<aside class="notes">
+							Student at OSU, studying CS
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like robots</h2>
+							<img height="400" src="pictures/rover.jpg">
+						</p>
+						<aside class="notes">
+							I like robots, lead robot team, University Rover Challenge
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like space</h2>
+							<img height="300" src="pictures/spacex.jpg">
+							<img height="300" src="pictures/NASASocial.jpg">
+						</p>
+						<aside class="notes">
+							I like space, interned at SpaceX, invited to NASA Jet Propulsion Laboratory for Curiosity landing
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like being active</h2>
+							<img height="400" src="pictures/running.jpg">
+							<img height="400" src="pictures/Birthday.jpg">
+						</p>
+						<aside class="notes">
+							I like being active, am avid runner
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like to be fancy</h2>
+							<img height="400" src="pictures/fancy.jpg">
+							<img height="400" src="pictures/fancy1.jpg">
+						</p>
+						<aside class="notes">
+							I like to be fancy, but who doesn't
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>...enough about me...</h2>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>What is Release Engineering?</h2>
+					</section>
+					<section>
+						<h2>Overview of Mozilla</h2>
+						<p>
+							<img src="pictures/MozillaStructure.png">
+						</p>
+						<aside class="notes">
+							<br>•	Define where RelEng fits under Mozilla umbrella
+						</aside>
+					</section>
+					<section>
+						<h2>Overview of Mozilla</h2>
+						<p>
+							<img src="pictures/PlatformAndOpsStructure.png">
+						</p>
+						<aside class="notes">
+							<br>•	Many groups, RelEng is one… 18 full-time, 4 interns
+							<br>•	4 non-adjacent time zones, one of the more dispersed groups
+						</aside>
+					</section>
+					<section>
+						<h2>Put Another Way</h2>
+						<p>
+							Release Engineering encompasses a part of the process between when a Developer makes a software check-in and when that change is ready to ship out to the user.
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Release Engineers != Developers</h2>
+						<p>Developers build a <strong class="fragment highlight-blue" data-fragment-index="1">product</strong></p>
+						<p>Release Engineers build a <strong class="fragment highlight-green" data-fragment-index="2">pipeline</strong></p>
+					</section>
+					<section>
+						<h2>So what does this Pipeline look like?</h2>
+						<img src="pictures/consider.gif">
+					</section>
+					<section data-transition="none">
+						<h2>Building/Testing</h2>
+						<img src="pictures/Pipeline1.png">
+						<aside class="notes">
+							<br>•	Work revolves around building and testing a check-in
+							<br>•	Check-in on any of the 42 branches
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Building/Testing</h2>
+						<img src="pictures/Pipeline2.png">
+						<aside class="notes">
+							<br>•	Buildbot, builds on up to 17 platforms, tests a variety that varies in depth and breadth
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Building/Testing</h2>
+						<img src="pictures/Pipeline3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Building/Testing</h2>
+						<img src="pictures/tbpl.png">
+						<aside class="notes">
+							<br>•	Once finished, parade of colors that is TBPL
+							<br>•	If compete/passed, you may land to mozilla-inbound
+							<br>•	Begin Ride on Trains
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains1.png">
+						<aside class="notes">
+							<br>•	Trains are a concept that Mozilla uses, we implement
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains4.png">
+						<aside class="notes">
+							<br>•	Every 6 weeks, all stable full-feature releases are landed
+							<br>•	All complete stable features ride the trains for at least 18 weeks before shipping
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains5.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains6.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains7.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>How is the pipeline run?</h2>
+						<img src="pictures/Running1.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>How is the pipeline run?</h2>
+						<img src="pictures/Running2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>How is the pipeline run?</h2>
+						<img src="pictures/Running3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>How is the pipeline run?</h2>
+						<img src="pictures/Running4.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>What's changed in the past 5 years?
+							<br>Expansion</h2>
+						<p>
+							<div style="text-align: center;">
+								<table style="margin: 0px auto;" border="0">
+									<tr><th><center><h3 style="color: #ff2c2d;">May 2007</h3></center></th><th><center><h3 style="color: #17ff2e;">Today</h3></center></th></tr>
+									<tr><td colspan="2"><strong>Number of machines running builds/tests</strong></td></tr>
+									<tr><td style="color: #ff2c2d;"><center>86 Machines</center></td><td style="color: #17ff2e;"><center>5,400 Machines</center><br></td></tr>
+									<tr><td colspan="2"><strong>Time to ship a chemspill (emergency) release</strong></td></tr>
+									<tr><td style="color: #ff2c2d;"><center>4-6 weeks</center></td><td style="color: #17ff2e;"><center>11 hours</center><br></td></tr>
+									<tr><td colspan="2"><strong>Time to ship a 'new feature' release</strong></td></tr>
+									<tr><td style="color: #ff2c2d;"><center>12-18 months</center></td><td style="color: #17ff2e;"><center>6 weeks</center><br></td></tr>
+								</table>
+							</div>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>What's changed in the past 5 years?
+							<br>Demand</h2>
+						<p>
+							<div style="text-align: center;">
+								<table style="margin: 0px auto;" border="0">
+									<tr><th><center><h3 style="color: #ff2c2d;">May 2007</h3></center></th><th><center><h3 style="color: #17ff2e;">Today</h3></center></th></tr>
+									<tr><td colspan="2"><strong>Number of branches</strong></td></tr>
+									<tr><td style="color: #ff2c2d;"><center>1 1/2</center></td><td style="color: #17ff2e;"><center>42</center><br></td></tr>
+									<tr><td colspan="2"><strong>Number of check-ins per day</strong></td></tr>
+									<tr><td style="color: #ff2c2d;"><center>15</center></td><td style="color: #17ff2e;"><center>400</center><br></td></tr>
+									<tr><td colspan="2"><strong>Number of locales (languages) that we ship for</strong></td></tr>
+									<tr><td style="color: #ff2c2d;"><center>34</center></td><td style="color: #17ff2e;"><center>94</center></td></tr>
+								</table>
+							</div>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Compute Time</h2>
+						<p>
+							<div style="text-align: center;">
+								<table style="margin: 0px auto;" border="0">
+									<tr><td><strong>per Check-in</strong></td><td style="color: #17ff2e;"><center>~9 days</center><br></td></tr>
+									<tr><td><strong>per Month</strong></td><td style="color: #17ff2e;"><center>~191 years</center><br></td></tr>
+									<tr><td><strong>per Year</strong></td><td style="color: #17ff2e;"><center>~1.3k years</center></td></tr>
+								</table>
+							</div>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>For more information</h2>
+						<p>
+							Search on the Google Talks YouTube channel for the video titled <br>
+							<blockquote>Release Engineering as a Force Multiplier</blockquote>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="#FF9500">
+						<h2>Projects I contributed to</h2>
+						<p>
+							<ul>
+								<li>BuildAPI</li>
+								<li>Autolander</li>
+								<li>Nagios Alerts</li>
+								<li>Reporting</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							<br>•	I have contributed to many projects this summer, here are some
+						</aside>
+					</section>
+					<section data-background="#FF9500">
+						<h2>BuildAPI</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>BuildAPI</h2><br>
+						<img src="pictures/BuildAPITop.png">
+						<aside class="notes">
+							<br>•	BuildAPI is the internally developed REST API made with Pylons
+							<br>•	Has a lot of capability, always improving
+						</aside>
+					</section>
+					<section>
+						<h2>BuildAPI</h2><br>
+						<img src="pictures/BuildAPIBottom.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>BuildAPI</h2><br>
+						<h3>Gaia-Central Reporting Bug</h3>
+						<p>5/21 to 5/28</p>
+						<img style="width: 60%;" src="pictures/BuildAPI1.png">
+						<aside class="notes">
+							<br>•	Chased bug where apparent halt in check-ins on gaia-central on May 28th
+							<br>•	Turned out it was because of another change where we stopped polling gaia-central
+							<br>•	birch was not a replacement with a data mix of gaia changes, gecko related b2g landings and merges
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>BuildAPI</h2><br>
+						<h3>Gaia-Central Reporting Bug</h3>
+						<p>5/29 to 6/5</p>
+						<img style="width: 60%;" src="pictures/BuildAPI2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>BuildAPI</h2><br>
+						<h3>Push Report Adjustments</h3>
+						<img style="width: 60%;" src="pictures/BuildAPIGraph1.png">
+						<img style="width: 60%;" src="pictures/BuildAPIGraph2.png">
+						<img style="width: 60%;" src="pictures/BuildAPIGraph3.png">
+						<aside class="notes">
+							<br>•	Other early project was adjusting reports for numbers of check-ins across branches
+							<br>•	BuildAPI was a central theme in my internship and is included in the following projects I am going to talk about
+						</aside>
+					</section>
+					<section data-background="#FF9500">
+						<h2>Autolander</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Autolander</h2><br>
+						<img src="pictures/Autolander1.png">
+						<aside class="notes">
+							<br>•	Imagine out previous example
+							<br>•	You are a Developer who makes a check-in
+							<br>•	Previously, Developer had to check themselves and manually land
+							<br>•	Cuts out half the steps
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Autolander</h2><br>
+						<img src="pictures/Autolander2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Autolander</h2><br>
+						<img src="pictures/Autolander3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Autolander</h2><br>
+						<img src="pictures/Autolander4.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Autolander</h2><br>
+						<img src="pictures/Autolander5.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Autolander</h2><br>
+						<img src="pictures/Autolander6.png">
+						<aside class="notes">
+							<br>•	If fail, Dev must still look for that, and make fixes
+						</aside>
+					</section>
+					<section>
+						<h2>Autolander</h2><br>
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+						<aside class="notes">
+							<br>•	Many parts to Autoland, mine was an expansion of BuildAPI
+						</aside>
+					</section>
+					<section>
+						<h2>Autolander</h2><br>
+						<img src="pictures/AutolanderFull1.png">
+						<aside class="notes">
+							<br>•	Expansion was a URL taking arguments for branch and revision and giving a JSON response detailing status on job complete and job passed
+							<br>•	After this, I used the new expansion to create a new view on all BuildAPI revision pages
+						</aside>
+					</section>
+					<section>
+						<h2>Autolander</h2><br>
+						<img src="pictures/AutolanderFull2.png">
+						<aside class="notes">
+							<br>•	Autoland DOES NOT handle warnings, only treats success and retry/success as a true success
+						</aside>
+					</section>
+					<section>
+						<h2>Autolander</h2><br>
+						<img src="pictures/AutolanderFull3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Autolander</h2><br>
+						<img src="pictures/AutolanderPartial1.png">
+						<img src="pictures/AutolanderPartial2.png">
+						<img src="pictures/AutolanderPartial3.png">
+						<aside class="notes">
+							<br>•	Also, a stableDelay helps to ensure data is stable, no new builds/tests in last 180 seconds
+						</aside>
+					</section>
+					<section>
+						<h2>Autolander</h2>
+						<p>
+							Note: Autolander is still in development and is not available for use yet.
+						</p>
+						<aside class="notes">
+							<br>•	Autoland is still in development
+						</aside>
+					</section>
+					<section data-background="#FF9500">
+						<h2>Nagios Alerts</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Nagios Alerts</h2><br>
+						<img src="pictures/Nagios.png">
+						<aside class="notes">
+							<br>•	We use Nagios extensively to monitor all aspects of the pipeline
+							<br>•	My alert had to do with pending builds/tests
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Nagios Alerts</h2>
+						<img src="pictures/Nagios1.png">
+						<aside class="notes">
+							<br>•	Between when a Dev makes a check-in and buildbot grabbing that change, builds/tests are pending before going to machines in pool
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Nagios Alerts</h2>
+						<img src="pictures/Nagios2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Nagios Alerts</h2>
+						<img src="pictures/Nagios3.png">
+						<aside class="notes">
+							<br>•	What happens if machines suddenly stop accepting new jobs
+							<br>•	This is bad
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Nagios Alerts</h2>
+						<img src="pictures/Nagios4.png">
+						<aside class="notes">
+							<br>•	I developed an alert with warning/critical threshold monitoring global pending builds/tests
+							<br>•	This prevents delays to the rest of Mozilla because of an outage
+						</aside>
+					</section>
+					<section data-background="#FF9500">
+						<h2>Reporting</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Reporting</h2>
+						<img src="pictures/Flot.png">
+						<aside class="notes">
+							<br>•	Involves build system refactoring and building visualizations to analyze the progress being made in this area
+							<br>•	Will be using Flot to plot this data, which is a javascript plotting library for JQuery
+							<br>•	This is in progress
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>In Conclusion...</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Release Engineering is a <br>Force <span class="fragment highlight-red">Multiplier</span></h2>
+						<p>
+							<span class="fragment fade-in" data-fragment-index="1">A Force Multiplier is:</span>
+							<blockquote  class="fragment fade-in" data-fragment-index="1">
+								A capability that, when added to and employed by a team, significantly increases the potential of that team and thus enhances the probability of success
+							</blockquote>
+							<font size="5em" class="fragment fade-in" data-fragment-index="1"><i>Defense Technical Information Center (dtic.mil)</i></font>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Special Thanks</h2>
+						<p>
+							<ul>
+								<li>Hal Wine (hwine)</li>
+								<li>John O'Duinn (joduinn)</li>
+								<li>Jill Alvarez </li>
+								<li>Andrea Zingerman</li>
+								<li>All of RelEng</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<p>
+							<ul>
+								<li>Aki Sasaki (aki)</li>
+							    <li>Armen Zambrano Gasparnian (armenzg)</li>
+							    <li>Ben Hearsum (bhearsum)</li>
+							    <li>Justin Wood (Callek)</li>
+							    <li>Chris Atlee (catlee)</li>
+							    <li>Chris Cooper (coop)</li>
+							    <li>Joey Armstrong (joey)</li>
+							    <li>John Hopkins (jhopkins)</li>
+							    <li>Jordan Lund (jlund)</li>
+							    <li>Kim Moir (kmoir)</li>
+							    <li>Massimo Gervasini (mgerva)</li>
+							    <li>Michael Shal (mshal)</li>
+							    <li>Nick Thomas (nthomas)</li>
+							    <li>Pete Moore (pmoore)</li>
+							    <li>Rail Aliiev (rail)</li>
+							    <li>Simone Bruno (simone)</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>For more information</h2>
+					<p>
+						Search on the Google Talks YouTube channel for the video titled <br>
+						<blockquote>Release Engineering as a Force Multiplier</blockquote>
+					</p>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+
+				<section>
+					<img style="width: 50%;" src="pictures/KeepCalmAndShipIt.png" alt="Keep Calm And Ship It">
+					<aside class="notes">
+						
+					</aside>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
