@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Just Ship It - a presentation by John Zeller</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Firefox OS Color Palette - Orange: #E66000 - Light Orange: #FF9500 - Blue: #00539F - Light Blue: #0095DD - Brown: #330000 - Charcoal: #4D4E53 -->
+
+			<!-- Highlight Colors - Red: #ff2c2d - Blue: #1b91ff - Green: #17ff2e -->
+			<div class="slides">
+				<section  data-background="#00539F">
+					<h1>JUST SHIP IT</h1>
+					<h3>My summer in Mozilla Release Engineering</h3>
+					<p>
+						<small>Created by <a href="http://www.johnzeller.com">John Zeller</a> / IRC: zeller</a></small>
+					</p>
+					<aside class="notes">
+						Hello my name is John Zeller, summer intern
+					</aside>
+				</section>
+
+				<section data-background="#E66000">
+					<h2>What should you expect?</h2>
+					<ul>
+						<li class="fragment roll-in">A little about me</li>
+						<li class="fragment roll-in">What is Release Engineering?</li>
+						<li class="fragment roll-in">Ship It</li>
+						<li class="fragment roll-in">Contributing</li>
+						<li class="fragment roll-in">Questions</li>
+					</ul>
+					<aside class="notes">
+						Few things I want to cover during this talk
+						Layout a roadmap
+					</aside>
+				</section>
+
+				<section data-background="#0095DD">
+					<section>
+						<h2>Who is John Zeller?</h2>
+						<img src="pictures/unicornglasshole.jpg" height="400">
+					</section>
+					<section>
+						<p>
+							<h2>I'm a student</h2>
+							<img style="background-color: white;" height="200" src="pictures/OSUlogo.png">
+							<img height="200" src="pictures/OSUbeaver.jpg"><br>
+							<img height="300" src="pictures/OSUcampus.jpg">
+						</p>
+						<aside class="notes">
+							Student at OSU, studying CS
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like robots</h2>
+							<img height="300" src="pictures/rover.jpg">
+							<img height="300" src="pictures/2013RoverTeam.jpg">
+						</p>
+						<aside class="notes">
+							I like robots, lead robot team, University Rover Challenge
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like space</h2>
+							<img height="300" src="pictures/spacex.jpg">
+							<img height="300" src="pictures/NASASocial.jpg">
+						</p>
+						<aside class="notes">
+							I like space, interned at SpaceX, invited to NASA Jet Propulsion Laboratory for Curiosity landing
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like being active</h2>
+							<img height="400" src="pictures/running.jpg">
+							<img height="400" src="pictures/Birthday.jpg">
+						</p>
+						<aside class="notes">
+							I like being active, am avid runner
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like to make beer</h2>
+							<img height="300" src="pictures/BalticPorter2.jpg">
+							<img height="300" src="pictures/BalticPorter3.jpg">
+						</p>
+						<aside class="notes">
+							I like space, interned at SpaceX, invited to NASA Jet Propulsion Laboratory for Curiosity landing
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>I like to be fancy</h2>
+							<img height="400" src="pictures/fancy.jpg">
+							<img height="400" src="pictures/fancy1.jpg">
+						</p>
+						<aside class="notes">
+							I like to be fancy, but who doesn't
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h2>...enough about me...</h2>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>What is Release Engineering?</h2>
+					</section>
+					<section>
+						<h2>Overview of Mozilla</h2>
+						<p>
+							<img src="pictures/MozillaStructure.png">
+						</p>
+						<aside class="notes">
+							<br>•	Define where RelEng fits under Mozilla umbrella
+						</aside>
+					</section>
+					<section>
+						<h2>Overview of Mozilla</h2>
+						<p>
+							<img src="pictures/PlatformAndOpsStructure.png">
+						</p>
+						<aside class="notes">
+							<br>•	Many groups, RelEng is one… 13 full-time, 4 interns
+							<br>•	4 non-adjacent time zones, one of the more dispersed groups
+						</aside>
+					</section>
+					<section>
+						<h2>Release Engineers != Developers</h2>
+						<p>Developers build a <strong class="fragment highlight-blue" data-fragment-index="1">product</strong></p>
+						<p>Release Engineers build a <strong class="fragment highlight-green" data-fragment-index="2">pipeline</strong></p>
+					</section>
+					<section>
+						<h2>Pipeline</h2>
+						<p>
+							<img height="550" src="pictures/PipelineOverview.png">
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Pipeline</h2>
+						<p>
+							<img height="550" src="pictures/PipelineOverview2.png">
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Pipeline</h2>
+						<p>
+							<img height="550" src="pictures/PipelineOverview3.png">
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Pipeline</h2>
+						<p>
+							<img height="550" src="pictures/PipelineOverview4.png">
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>So what does this Pipeline look like?</h2>
+						<img src="pictures/consider.gif">
+					</section>
+					<section data-transition="none">
+						<h2>Building/Testing</h2>
+						<img src="pictures/Pipeline1.png">
+						<aside class="notes">
+							<br>•	Work revolves around building and testing a check-in
+							<br>•	Check-in on any of the 42 branches
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Building/Testing</h2>
+						<img src="pictures/Pipeline2.png">
+						<aside class="notes">
+							<br>•	Buildbot, builds on up to 17 platforms, tests a variety that varies in depth and breadth
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Building/Testing</h2>
+						<img src="pictures/Pipeline3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Building/Testing</h2>
+						<img src="pictures/tbpl.png">
+						<aside class="notes">
+							<br>•	Once finished, parade of colors that is TBPL
+							<br>•	If compete/passed, you may land to mozilla-inbound
+							<br>•	Begin Ride on Trains
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains1.png">
+						<aside class="notes">
+							<br>•	Trains are a concept that Mozilla uses, we implement
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains4.png">
+						<aside class="notes">
+							<br>•	Every 6 weeks, all stable full-feature releases are landed
+							<br>•	All complete stable features ride the trains for at least 18 weeks before shipping
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains5.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains6.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2>Riding the Trains</h2>
+						<img src="pictures/Trains7.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Compute Time</h2>
+						<p>
+							<div style="text-align: center;">
+								<table style="margin: 0px auto;" border="0">
+									<tr><td><strong>per Check-in</strong></td><td style="color: #17ff2e;"><center>~9 days</center><br></td></tr>
+									<tr><td><strong>per Month</strong></td><td style="color: #17ff2e;"><center>~191 years</center><br></td></tr>
+									<tr><td><strong>per Year</strong></td><td style="color: #17ff2e;"><center>~1.3k years</center></td></tr>
+								</table>
+							</div>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>For more information</h2>
+						<p>
+							Search on the Google Talks YouTube channel for the video titled <br>
+							<blockquote>Release Engineering as a Force Multiplier</blockquote>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="#00539F">
+						<h2>Ship It</h2>
+						<p>
+							<ul>
+								<li>Overview</li>
+								<li>Vagrant</li>
+								<li>Status Updates</li>
+								<li>Post Release Triggering</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							<br>•	I have contributed to many projects this summer, here are some
+						</aside>
+					</section>
+					<section data-background="#00539F">
+						<h2>Overview</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt1.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt2.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt3.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt4.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt5.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt6.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt7.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt8.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt9.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt10.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt11.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt12.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="#00539F">
+						<h2>Vagrant</h2><br>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section>
+						<h2 style="margin-bottom: -20px;">Vagrant</h2><br>
+						<pre style="margin: 0px; width: 120%; margin-left: -10%; font-size: 0.35em;">
+							<code style="margin-top: -15px; max-height: 600px; height: 600px;">
+localhost:~ jzeller$ git clone https://git.mozilla.org/build/release-kickoff && cd release-kickoff
+Cloning into 'release-kickoff'...
+remote: Counting objects: 1714, done.
+remote: Compressing objects: 100% (1348/1348), done.
+remote: Total 1714 (delta 682), reused 1031 (delta 306)
+Receiving objects: 100% (1714/1714), 1.21 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (682/682), done.
+localhost:~ jzeller$ 
+							</code>
+						</pre>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section>
+						<h2 style="margin-bottom: -20px;">Vagrant</h2><br>
+						<pre style="margin: 0px; width: 120%; margin-left: -10%; font-size: 0.35em;">
+							<code style="margin-top: -15px; max-height: 600px; height: 600px;">
+localhost:~ jzeller$ vagrant up
+Checking connectivity... done
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Importing base box 'hashicorp/precise64'...
+==> default: Matching MAC address for NAT networking...
+==> default: Checking if box 'hashicorp/precise64' is up to date...
+==> default: Setting the name of the VM: release-kickoff_default_1410212452057_39311
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 5000 => 5000 (adapter 1)
+    default: 22 => 2222 (adapter 1)
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: ...
+    default: Guest Additions Version: 4.2.0
+    default: VirtualBox Version: 4.3
+==> default: Mounting shared folders...
+    default: /vagrant => /Users/jzeller/test/release-kickoff
+==> default: Running provisioner: shell...
+    default: Running: inline script
+==> default: stdin: is not a tty
+==> default: Ign http://us.archive.ubuntu.com precise InRelease
+==> default: ...
+==> default: Fetched 5,282 kB in 3s (1,436 kB/s)
+==> default: Reading package lists...
+==> default: ...
+==> default: Get:1 http://us.archive.ubuntu.com/ubuntu/ precise-updates/main python2.7 amd64 2.7.3-0ubuntu3.5 [2,675 kB]
+==> default: ...
+==> default: Downloading/unpacking pip
+==> default: Installing collected packages: pip
+==> default: Successfully installed pip
+==> default: Cleaning up...
+							</code>
+						</pre>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="#00539F">
+						<h2>Status Updates</h2><br>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipIt10.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/Zimbra.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section style="margin-left: -15%; width: 130% !important;">
+						<h2>Status Updates</h2><br>
+						<p>
+							<ul style="font-size: 0.85em;">
+								<h3 style="color: #00539F;">Bug 1032975: <small style="color: #EEEEEE; margin-top: 5px;">Add new table(s) to shipit database</small></h3> 
+								<ul style="margin-top: -20px; margin-bottom: 20px; font-size: 0.85em;">
+									<li>Add new table</li>
+									<li>Modify existing tables</li>
+								</ul>
+								<h3 style="color: #00539F;">Bug 1032985: <small style="color: #EEEEEE; margin-top: 5px;">Add REST API entry point to shipit that allows shipit-agent to enter release data into shipit database</small></h3>
+								<ul style="margin-top: -20px; margin-bottom: 20px; font-size: 0.85em;">
+									<li>Adding ability to have Ship It Notifier post changes to the database</li>
+								</ul>
+								<h3 style="color: #00539F;">Bug 1032978: <small style="color: #EEEEEE; margin-top: 5px;">Add a standalone process that listens to pulse for release related buildbot messages</small></h3>
+								<ul style="margin-top: -20px; margin-bottom: 20px; font-size: 0.85em;">
+									<li>Add new build properties pulse.m.o messages</li>
+									<li>Creating Ship It Notifier</li>
+									<li>Modifying Release Runner to insert enUSPlatforms into release tables once release 'Started'</li>
+									<li>Adding new class to api.py to handle CSRF</li>
+								</ul>
+							</ul>
+						</p>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section style="margin-left: -15%; width: 130% !important;">
+						<h2>Status Updates</h2><br>
+						<p>
+							<ul style="font-size: 0.85em;">
+								<h3 style="color: #00539F;">Bug 1055191: <small style="color: #EEEEEE; margin-top: 5px;">deploy ship it notifier</small></h3>
+								<ul style="margin-top: -20px; margin-bottom: 20px; font-size: 0.85em;">
+									<li>Puppet manifests for deploying Ship It Notifier</li>
+								</ul>
+								<h3 style="color: #00539F;">Bug 826753: <small style="color: #EEEEEE; margin-top: 5px;">Release automation should update ship it at certain points</small></h3>
+								<ul style="margin-top: -20px; margin-bottom: 20px; font-size: 0.85em;">
+									<li>New endpoints for /releases/releaseName/status and /releases/releaseName/status.html</li>
+									<li>Modify existing endpoint /releases.html</li>
+									<li>Model helpers, data forms, controllers, views, etc.</li>
+								</ul>
+							</ul>
+						</p>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status2.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status3.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status4.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status5.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status6.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status7.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status8.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status9.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status10.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status11.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status12.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Status Updates</h2><br>
+						<img height="550" src="pictures/Status13.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus2.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus3.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus4.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus5.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus6.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus7.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus8.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus9.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus10.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus11.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus12.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/ShipItStatus13.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="#00539F">
+						<h2>Post Release Triggering</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section style="margin-left: -15%; width: 130% !important;">
+						<h2>Post Release Triggering</h2>
+						<p>
+							<ul style="font-size: 0.85em;"> 
+								<h3 style="color: #00539F;">Bug 1062187: <small style="color: #EEEEEE; margin-top: 5px;">Replace columns in shipit database to track kickoff status</small></h3> 
+								<h3 style="color: #00539F;">Bug 1062205: <small style="color: #EEEEEE; margin-top: 5px;">Update release runner to be able to trigger pushsnip and postrelease builders through SendChange</small></h3>
+								<h3 style="color: #00539F;">Bug 1062208: <small style="color: #EEEEEE; margin-top: 5px;">Update postrelease script to talk to report status to Ship It</small></h3>
+								<h3 style="color: #00539F;">Bug 886522: <small style="color: #EEEEEE; margin-top: 5px;">Allow post release tasks to be triggered from ship it</small></h3>
+							</ul>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease2.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease3.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease4.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease5.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease6.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease7.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease8.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease9.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease10.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-transition="none">
+						<h2 style="margin-bottom: -20px;">Post Release Triggering</h2><br>
+						<img height="550" src="pictures/PostRelease11.png">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView2.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView3.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView4.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView5.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView6.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section data-background="pictures/PostReleaseView7.png" data-transition="none">
+						<aside class="notes">
+
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Contributing</h2>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Contributing</h2>
+						<p>
+							<ul>
+								<li>http://www.whatcanidoformozilla.org</li>
+								<li>http://www.joshmatthews.net/bugsahoy/?releng=1</li>
+								<li>Tupperware - http://hg.mozilla.org/build/tupperware</li>
+								<li>#releng on irc.mozilla.org</li>
+								<li>zeller on IRC</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Special Thanks</h2>
+						<p>
+							<ul>
+								<li>Kim Moir (kmoir)</li>
+								<li>Ben Hearsum (bhearsum)</li>
+								<li>Rail Aliiev (rail)</li>
+								<li>Jill Alvarez</li>
+								<li>Misty Orr</li>
+								<li>All of RelEng</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<p>
+							<ul>
+							    <li>Justin Wood (Callek)</li>
+							    <li>Chris Atlee (catlee)</li>
+							    <li>Chris Cooper (coop)</li>
+							    <li>Hal Wine (hwine)</li>
+							    <li>Jordan Lund (jlund)</li>
+							    <li>Massimo Gervasini (mgerva)</li>
+							    <li>Michael Shal (mshal)</li>
+							    <li>Nick Thomas (nthomas)</li>
+							    <li>Pete Moore (pmoore)</li>
+							    <li>Simone Bruno (simone)</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>For more information</h2>
+					<p>
+						Search on the Google Talks YouTube channel for the video titled <br>
+						<blockquote>Release Engineering as a Force Multiplier</blockquote>
+					</p>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<img src="pictures/ShipItSquirrel.jpg">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/ShipItSquirrel2.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/ShipItSquirrel3.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/ShipItSquirrel4.jpg">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/ShipItSquirrel5.jpg">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/Ship.jpg">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/Ship2.gif">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<img src="pictures/ShipItGood.png">
+						<aside class="notes">
+							
+						</aside>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

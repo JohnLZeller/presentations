@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+
+		<title>KEEP CALM AND SHIP IT - a presentation by John Zeller</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/reveal.css">
+		<link rel="stylesheet" href="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script><link rel="stylesheet" href="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/paper.css" type="text/css" media="print">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body style="transition: -moz-transform 0.8s ease 0s;">
+
+		<div data-background-transition="default" data-transition-speed="default" class="reveal default center">
+
+			<!-- Firefox OS Color Palette - Orange: #E66000 - Light Orange: #FF9500 - Blue: #00539F - Light Blue: #0095DD - Brown: #330000 - Charcoal: #4D4E53 -->
+			<div style="width: 960px; height: 700px; transform: translate(-50%, -50%) scale(0.852429) translate(50%, 50%);" class="slides">
+				<section class="present" style="top: -173px; display: block;" data-background="#E66000">
+					<h1>KEEP CALM AND SHIP IT</h1>
+					<h3>My summer in Mozilla Release Engineering</h3>
+					<p>
+						<small>Created by <a href="http://www.johnzeller.com/">John Zeller</a> / <a href="http://twitter.com/JohnLukeZeller">@JohnLukeZeller</a></small>
+					</p>
+				</section>
+
+				<section class="future" style="top: -192px; display: block;" data-background="#00539F" hidden="">
+					<h2>What should you expect?</h2>
+					<ul>
+						<li class="fragment roll-in">First, a little about yours truly</li>
+						<li class="fragment roll-in">What exactly is Release Engineering?</li>
+						<li class="fragment roll-in">Projects I contributed to</li>
+						<li class="fragment roll-in">Conclusion</li>
+						<li class="fragment roll-in">Questions</li>
+					</ul>
+				</section>
+
+				<section data-previous-indexv="0" class="stack future" style="top: 0px; display: block;" data-background="#0095DD" hidden="">
+					<section class="" style="top: -333.5px; display: block;">
+						<h2>First</h2>
+						<p>
+							Who is John Zeller<span class="fragment roll-in" data-fragment-index="1">?</span>
+						</p>
+						<img class="fragment fade-in" data-fragment-index="1" src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/unicornglasshole.jpg" height="400">
+					</section>
+					<section style="top: -350px; display: block;" class="future" hidden="">
+						<p>
+							</p><h2>I'm a student</h2>
+							<img style="background-color: white;" src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/OSUlogo.png" height="200">
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/OSUbeaver.jpg" height="200"><br>
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/OSUcampus.jpg" height="300">
+						<p></p>
+					</section>
+					<section style="top: -317px; display: none;" class="future" hidden="">
+						<p>
+							</p><h2>I like robots</h2>
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/rover.jpg" height="400">
+						<p></p>
+					</section>
+					<section style="top: -267px; display: none;" class="future" hidden="">
+						<p>
+							</p><h2>I like space</h2>
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/spacex.jpg" height="300">
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/NASASocial.jpg" height="300">
+						<p></p>
+					</section>
+					<section style="top: -20px; display: none;" class="future" hidden="">
+						<p>
+							</p><h2>I like being active</h2>
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/running.jpg" height="400">
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/birthday.jpg" height="400">
+						<p></p>
+					</section>
+					<section style="top: -20px; display: none;" class="future" hidden="">
+						<p>
+							</p><h2>I like to be fancy</h2>
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/fancy.jpg" height="400">
+							<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/fancy1.jpg" height="400">
+						<p></p>
+					</section>
+					<section style="top: -20px; display: none;" class="future" hidden="">
+						<p>
+							</p><h2>...enough about me...</h2>
+						<p></p>
+					</section>
+				</section>
+
+				<section data-previous-indexv="0" class="stack future" style="top: 0px; display: block;" hidden="">
+					<section class="past" style="top: -84px; display: none;" hidden="">
+						<h2>What <span data-fragment-index="0" class="fragment highlight-red">exactly</span> is Release Engineering?</h2>
+					</section>
+					<section style="top: -350px; display: none;" class="past" hidden="">
+						<h2>I thought I knew...</h2>
+						<img style="width: 50%;" src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/KeepCalmAndShipIt.png" alt="Keep Calm And Ship It">
+					</section>
+					<section style="top: -137.5px; display: none;" class="past" hidden="">
+						<h2>Release Engineers != Developers</h2>
+						<p>Developers build a <strong class="fragment highlight-blue" data-fragment-index="1">product</strong></p>
+						<p>Release Engineers build a <strong class="fragment highlight-green" data-fragment-index="2">pipeline</strong></p>
+					</section>
+					<section style="top: -250px; display: none;" class="past" hidden="">
+						<img src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/consider.gif">
+					</section>
+					<section style="top: -111px; display: none;" class="past" hidden="">
+						<h2>Overview of Operation</h2>
+						<p>
+							Blah, blah, blah
+						</p>
+					</section>
+					<section style="top: -145px; display: none;" class="past" hidden="">
+						<h2>How? Explain setup that allows operation to work</h2>
+						<p>
+							Blah, blah, blah
+						</p>
+					</section>
+					<section style="top: -111px; display: none;" class="past" hidden="">
+						<h2>What's changed in the last 5 years?</h2>
+						<p>
+							Blah, blah, blah
+						</p>
+					</section>
+					<section style="top: -111px; display: block;" class="">
+						<h2>By the numbers</h2>
+						<p>
+							Blah, blah, blah
+						</p>
+					</section>
+				</section>
+
+				<section data-previous-indexv="0" class="stack future" style="top: 0px; display: none;" data-background="#FF9500" hidden="">
+					<section class="past" style="top: -175.5px; display: none;" hidden="">
+						<h2>Projects I contributed to</h2>
+						<p>
+							</p><ul>
+								<li>Autolander</li>
+								<li>BuildAPI</li>
+								<li>Nagios Alerts</li>
+								<li>Makefile Liquidation Reporting</li>
+							</ul>
+						<p></p>
+					</section>
+					<section style="top: -111px; display: none;" class="past" hidden="">
+						<h2>Autolander</h2>
+						<p>
+							Blah, Blah, Blah
+						</p>
+					</section>
+					<section style="top: -111px; display: none;" class="past" hidden="">
+						<h2>BuildAPI</h2>
+						<p>
+							Blah, Blah, Blah
+						</p>
+					</section>
+					<section style="top: -111px; display: none;" class="past" hidden="">
+						<h2>Nagios Alerts</h2>
+						<p>
+							Blah, Blah, Blah
+						</p>
+					</section>
+					<section style="top: -111px; display: none;" class="">
+						<h2>Makefile Liquidation Reporting</h2>
+						<p>
+							Blah, Blah, Blah
+						</p>
+					</section>
+				</section>
+
+				<section data-previous-indexv="0" class="stack future" style="top: 0px; display: none;" hidden="">
+					<section class="past" style="top: -84px; display: none;" hidden="">
+						<h2>In Conclusion...</h2>
+					</section>
+					<section style="top: -268px; display: none;" class="">
+						<h2>Release Engineering is a <br>Force <span data-fragment-index="0" class="fragment highlight-red">Multiplier</span></h2>
+						<p>
+							<span class="fragment fade-in" data-fragment-index="1">A Force Multiplier is:</span>
+							</p><blockquote class="fragment fade-in" data-fragment-index="1">
+								"A capability that, when added to and employed by a combat 
+force, significantly increases the combat potential of that force and 
+thus enhances the probability of successful mission"
+							</blockquote>
+							<font class="fragment fade-in" data-fragment-index="1" size="5em"><i>Defense Technical Information Center (dtic.mil)</i></font>
+						<p></p>
+					</section>
+				</section>
+
+				<section data-previous-indexv="0" class="stack future" style="top: 0px; display: block;" hidden="">
+					<section class="past" style="top: -197px; display: block;" hidden="">
+						<h2>Special Thanks</h2>
+						<p>
+							</p><ul>
+								<li>Hal Wine (hwine)</li>
+								<li>John O'Duinn (joduinn)</li>
+								<li>Jill Alvarez </li>
+								<li>Andrea Zingerman</li>
+								<li>All of RelEng</li>
+							</ul>
+						<p></p>
+					</section>
+					<section style="top: -350px; display: block;" class="">
+						<p>
+							</p><ul>
+								<li>Aki Sasaki (aki)</li>
+							    <li>Armen Zambrano Gasparnian (armenzg)</li>
+							    <li>Ben Hearsum (bhearsum)</li>
+							    <li>Justin Wood (Callek)</li>
+							    <li>Chris Atlee (catlee)</li>
+							    <li>Chris Cooper (coop)</li>
+							    <li>Joey Armstrong (joey)</li>
+							    <li>John Hopkins (jhopkins)</li>
+							    <li>Jordan Lund (jlund)</li>
+							    <li>Kim Moir (kmoir)</li>
+							    <li>Massimo Gervasini (mgerva)</li>
+							    <li>Michael Shal (mshal)</li>
+							    <li>Nick Thomas (nthomas)</li>
+							    <li>Pete Moore (pmoore)</li>
+							    <li>Rail Aliiev (rail)</li>
+							    <li>Simone Bruno (simone)</li>
+							</ul>
+						<p></p>
+					</section>
+				</section>
+
+				<section class="future" style="top: -182px; display: block;" hidden="">
+					<h1>Questions</h1>
+					<h1>?</h1>
+				</section>
+
+				<section class="future" style="top: -146px; display: block;" hidden="">
+					<h1>THE END</h1>
+					<h3>BY John Zeller / IRC: zeller</h3>
+				</section>
+
+			</div>
+
+		<div class="backgrounds"><div style="background: none repeat scroll 0% 0% rgb(230, 96, 0);" class="slide-background present"></div><div style="background: none repeat scroll 0% 0% rgb(0, 83, 159);" class="slide-background future"></div><div style="background: none repeat scroll 0% 0% rgb(0, 149, 221);" class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div style="background: none repeat scroll 0% 0% rgb(255, 149, 0);" class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div></div><div class="slide-background future"><div class="slide-background present"></div><div class="slide-background future"></div></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div style="display: block;" class="progress"><span style="width: 0px;"></span></div><aside style="display: block;" class="controls"><div class="navigate-left"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside><div class="state-background"></div><div class="pause-overlay"></div></div>
+
+		<script src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/head.js"></script>
+		<script src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script><script src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/highlight.js" type="text/javascript"></script><script src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/zoom.js" type="text/javascript"></script><script src="KEEP%20CALM%20AND%20SHIP%20IT%20-%20a%20presentation%20by%20John%20Zeller_files/notes.js" type="text/javascript"></script>
+
+	
+
+</body></html>
