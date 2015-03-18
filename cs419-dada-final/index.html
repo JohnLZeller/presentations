@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>A Brief History of Firefox Exploits - a presentation by John Zeller</title>
+
+		<meta name="description" content="A Brief History of Firefox Exploits">
+		<meta name="author" content="John Luke Zeller">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Firefox OS Color Palette - Orange: #E66000 - Light Orange: #FF9500 - Blue: #00539F - Light Blue: #0095DD - Brown: #330000 - Charcoal: #4D4E53 -->
+
+			<!-- Highlight Colors - Red: #ff2c2d - Blue: #1b91ff - Green: #17ff2e -->
+			<div class="slides">
+				<section  data-background="#00539F">
+					<h1>A Brief History of Firefox Exploits</h1>
+					<h3>CS 419 - Final Presentation</h3>
+					<p>
+						<small>Created by <a href="http://www.johnzeller.com">John Zeller</a> / IRC: zeller</a></small>
+					</p>
+					<aside class="notes">
+						Hello my name is John Zeller, and today I will be talking about various exploits that have shown up in Firefox over the years.
+					</aside>
+				</section>
+
+				<section data-background="#E66000">
+					<h2>What should you expect?</h2>
+					<ul>
+						<li class="fragment roll-in">Background on Firefox</li>
+						<li class="fragment roll-in">Overview of Exploits</li>
+						<li class="fragment roll-in">For Each Exploit:
+							<ul>
+								<li class="fragment roll-in">Introduce</li>
+								<li class="fragment roll-in">Explain How It Works</li>
+								<li class="fragment roll-in">Demo</li>
+								<li class="fragment roll-in">Solution</li>
+							</ul>
+						</li>
+						<li class="fragment roll-in">Conclusion</li>
+					</ul>
+					<aside class="notes">
+						Few things I want to cover during this talk
+						Layout a roadmap
+					</aside>
+				</section>
+
+				<section data-background="#0095DD">
+					<section>
+						<h2>Background on Firefox</h2>
+						<img src="pictures/firefoxlogo.png" height="400">
+					</section>
+					<section>
+						<p>
+							<h2>Created by</h2>
+							<figure style="float: left">
+								<img src="pictures/dave-hyatt.jpg" height="400">
+							 	<figcaption>Dave Hyatt</figcaption>
+							</figure>
+							<figure style="float: right">
+								<img src="pictures/Blake_Ross.jpg" height="400">
+							 	<figcaption>Blake Ross</figcaption>
+							</figure> 
+						</p>
+						<aside class="notes">
+							The Mozilla Firefox project was created by Dave Hyatt and Blake Ross, while they were working on the Mozilla Suite.
+						</aside>
+					</section>
+					<section>
+						<h2>Based on Netscape</h2>
+						<img src="pictures/netscape.png" width="1200">
+						<aside class="notes">
+							The Mozilla project comes from the original Netscape source coded, started by AOL. In January of 1998, AOL becan opening up the Netscape source code and on March 31st, 1998, the Mozilla project was created as an experimental branch of the Mozilla Suite.
+						</aside>
+					</section>
+					<section>
+						<h2>Created on March 31st, 1998</h2>
+						<img src="pictures/marketshare.png" width="800">
+						<aside class="notes">
+							The first publically available binaries showed up in September of 2002, code named Pheonix. Then from April 13th, 2003 to February 9, 2004 it was known as Firebird, before finally settling on the name Firefox. After many early releases, Firefox 1.0 was finally released on November 9th, 2004. When Firefox was first launched, Internet Explorer had more than an 90% market share.
+						</aside>
+					</section>
+					<section>
+						<h2>Today</h2>
+						<img src="pictures/today.png" width="800">
+						<small>Source: http://marketshare.hitslink.com/browser-market-share.aspx?qprid=1</small>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Overview of Exploits</h2>
+						<ul>
+							<li class="fragment roll-in">Exploit #1: Code execution through shared function objects</li>
+							<li class="fragment roll-in">Exploit #2: </li>
+							<li class="fragment roll-in">Exploit #3: </li>
+							<li class="fragment roll-in">Exploit #4: </li>
+							<li class="fragment roll-in">Exploit #5: </li>
+							<li class="fragment roll-in">Exploit #6: </li>
+							<li class="fragment roll-in">Exploit #7: </li>
+						</ul>
+						<aside class="notes">
+							Notes
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #1</h2>
+						<h3>Code execution through shared function objects</h3>
+						<ul>
+							<li>Announced on July 12, 2005</li>
+							<li>Announced by moz_bug_r_a4 and shutdown</li>
+							<li>Fixed in Firefox 1.0.5 and Mozilla Suite 1.7.10</li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #1: Code execution through shared function objects</h4>
+							<img src="pictures/exploit1.png" width="800">
+						</p>
+						<aside class="notes">
+							By allowing the improper cloning of base objects in the Firefox source code, this exploit allows a web script to walk up the Firefox prototype chain, gaining access to objects with enhanced privleges. This allows for the possibility of achieving code execution on a targets machine, or any other nafarious objective.
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2005-56/
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #1: Code execution through shared function objects</h4>
+							<img src="pictures/exploit1code.png" width="1400">
+						</p>
+						<aside class="notes">
+							To demonstrate this, I will execute this code in Firefox 1.0.4 to show that this exploit does indeed allow web content to can gain access to these objects with enhanced priveleges.
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=296397
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #1: Code execution through shared function objects</h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #1: Code execution through shared function objects</h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #2</h2>
+						<h3></h3>
+						<ul>
+							<li>Announced on </li>
+							<li>Announced by </li>
+							<li>Fixed in </li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #2: </h4>
+							<img src="pictures/exploit2.png" width="800">
+						</p>
+						<aside class="notes">
+
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #2: </h4>
+							<img src="pictures/exploit2code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #2: </h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #2: </h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #3</h2>
+						<h3></h3>
+						<ul>
+							<li>Announced on </li>
+							<li>Announced by </li>
+							<li>Fixed in </li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #3: </h4>
+							<img src="pictures/exploit3.png" width="800">
+						</p>
+						<aside class="notes">
+
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #3: </h4>
+							<img src="pictures/exploit3code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #3: </h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #3: </h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #4</h2>
+						<h3></h3>
+						<ul>
+							<li>Announced on </li>
+							<li>Announced by </li>
+							<li>Fixed in </li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #4: </h4>
+							<img src="pictures/exploit4.png" width="800">
+						</p>
+						<aside class="notes">
+
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #4: </h4>
+							<img src="pictures/exploit4code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #4: </h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #4: </h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #5</h2>
+						<h3></h3>
+						<ul>
+							<li>Announced on </li>
+							<li>Announced by </li>
+							<li>Fixed in </li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #5: </h4>
+							<img src="pictures/exploit5.png" width="800">
+						</p>
+						<aside class="notes">
+
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #5: </h4>
+							<img src="pictures/exploit5code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #5: </h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #5: </h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #6</h2>
+						<h3></h3>
+						<ul>
+							<li>Announced on </li>
+							<li>Announced by </li>
+							<li>Fixed in </li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #6: </h4>
+							<img src="pictures/exploit6.png" width="800">
+						</p>
+						<aside class="notes">
+
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #6: </h4>
+							<img src="pictures/exploit6code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #6: </h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #6: </h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Exploit #7</h2>
+						<h3></h3>
+						<ul>
+							<li>Announced on </li>
+							<li>Announced by </li>
+							<li>Fixed in </li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #7: </h4>
+							<img src="pictures/exploit7.png" width="800">
+						</p>
+						<aside class="notes">
+
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #7: </h4>
+							<img src="pictures/exploit7code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: 
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #7: </h4>
+							<h2>DEMO</h2>
+						</p>
+						<aside class="notes">
+							Now I will demonstrate this exploit
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #7: </h4>
+							<h3>Solution</h3>
+						</p>
+						<aside class="notes">
+							The solution to this exploit was 
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Conclusion</h2>
+					</section>
+					<section>
+						<p>
+							Placeholder Text
+						</p>
+						<aside class="notes">
+							Notes
+						</aside>
+					</section>
+					<section>
+						<p>
+							Placeholder Text
+						</p>
+						<aside class="notes">
+							Notes
+						</aside>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
