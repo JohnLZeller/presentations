@@ -116,13 +116,28 @@
 					<section>
 						<h2>Overview of Exploits</h2>
 						<ul>
-							<li class="fragment roll-in">Exploit #1: Code execution through shared function objects</li>
-							<li class="fragment roll-in">Exploit #2: </li>
-							<li class="fragment roll-in">Exploit #3: </li>
-							<li class="fragment roll-in">Exploit #4: </li>
-							<li class="fragment roll-in">Exploit #5: </li>
-							<li class="fragment roll-in">Exploit #6: </li>
-							<li class="fragment roll-in">Exploit #7: </li>
+							<li class="fragment roll-in">Code Execution
+								<ul>
+									<li class="fragment roll-in">Exploit #1: Code execution through shared function objects</li>
+								</ul>
+							</li>
+							<li class="fragment roll-in">Cross-site Scripting (XSS)
+								<ul>
+									<li class="fragment roll-in">Exploit #2: XSS via javascript URL in iframe</li>
+									<li class="fragment roll-in">Exploit #3: XSS using .valueOf.call()</li>
+									<li class="fragment roll-in">Exploit #4: Cross-site JavaScript injection using event handlers</li>
+								</ul>
+							</li>
+							<li class="fragment roll-in">Memory Corruption
+								<ul>
+									<li class="fragment roll-in">Exploit #5: Crashes with evidence of memory corruption</li>
+								</ul>
+							</li>
+							<li class="fragment roll-in">Misc
+									<li class="fragment roll-in">Exploit #6: File stealing by changing input type</li>
+									<li class="fragment roll-in">Exploit #7: Code execution through deleted frame reference</li>
+								</ul>
+							</li>
 						</ul>
 						<aside class="notes">
 							Notes
@@ -130,6 +145,12 @@
 					</section>
 				</section>
 
+				<section>
+					<section>
+						<h2>Code Execution</h2>
+						<img src="pictures/calculator.jpg" width="800">
+					</section>
+				</section>
 				<section>
 					<section>
 						<h2>Exploit #1</h2>
@@ -182,37 +203,46 @@
 
 				<section>
 					<section>
+						<h2>Cross-site Scripting (XSS)</h2>
+						<figure>
+							<img src="pictures/cookiemonster.jpeg" width="800">
+							<figcaption>Cookie Monster... he will steal your cookies</figcaption>
+						</figure>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Exploit #2</h2>
-						<h3></h3>
+						<h3>XSS via javascript URL in iframe</h3>
 						<ul>
-							<li>Announced on </li>
-							<li>Announced by </li>
-							<li>Fixed in </li>
+							<li>Announced on May 8, 2005</li>
+							<li>Announced by Paul (Greyhats)</li>
+							<li>Fixed in Firefox 1.0.4 and Mozilla Suite 1.7.8</li>
 						</ul>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #2: </h4>
-							<img src="pictures/exploit2.png" width="800">
+							<h4>Exploit #2: XSS via javascript URL in iframe</h4>
+							<img src="pictures/exploit2.png" width="1000">
 						</p>
 						<aside class="notes">
 
-							Source: 
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2005-42/
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #2: </h4>
+							<h4>Exploit #2: XSS via javascript URL in iframe</h4>
 							<img src="pictures/exploit2code.png" width="1400">
 						</p>
 						<aside class="notes">
 							
-							Source: 
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=292691
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #2: </h4>
+							<h4>Exploit #2: XSS via javascript URL in iframe</h4>
 							<h2>DEMO</h2>
 						</p>
 						<aside class="notes">
@@ -221,7 +251,7 @@
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #2: </h4>
+							<h4>Exploit #2: XSS via javascript URL in iframe</h4>
 							<h3>Solution</h3>
 						</p>
 						<aside class="notes">
@@ -233,36 +263,55 @@
 				<section>
 					<section>
 						<h2>Exploit #3</h2>
-						<h3></h3>
+						<h3>XSS using .valueOf.call()</h3>
 						<ul>
-							<li>Announced on </li>
-							<li>Announced by </li>
-							<li>Fixed in </li>
+							<li>Announced on April 13, 2006</li>
+							<li>Announced by moz_bug_r_a4</li>
+							<li>Fixed in:
+								<ul>
+									<li>Firefox 1.0.8</li>
+									<li>Firefox 1.5</li>
+									<li>Mozilla Suite 1.7.13</li>
+									<li>SeaMonkey 1</li>
+									<li>Thunderbird 1.0.8</li>
+									<li>Thunderbird 1.5</li>
+								</ul>
+							</li>
 						</ul>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #3: </h4>
+							<h4>Exploit #3: XSS using .valueOf.call()</h4>
 							<img src="pictures/exploit3.png" width="800">
 						</p>
 						<aside class="notes">
 
-							Source: 
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2006-19/
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #3: </h4>
-							<img src="pictures/exploit3code.png" width="1400">
+							<h4>Exploit #3: XSS using .valueOf.call()</h4>
+							<img src="pictures/exploit3-1code.png" width="1400">
 						</p>
 						<aside class="notes">
 							
-							Source: 
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=327194
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #3: </h4>
+							<h4>Exploit #3: XSS using .valueOf.call()</h4>
+							<img src="pictures/exploit3-2code.png" width="1400">
+						</p>
+						<aside class="notes">
+							
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=327194
+						</aside>
+					</section>
+					<section>
+						<p>
+							<h4>Exploit #3: XSS using .valueOf.call()</h4>
 							<h2>DEMO</h2>
 						</p>
 						<aside class="notes">
@@ -271,7 +320,7 @@
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #3: </h4>
+							<h4>Exploit #3: XSS using .valueOf.call()</h4>
 							<h3>Solution</h3>
 						</p>
 						<aside class="notes">
@@ -283,36 +332,45 @@
 				<section>
 					<section>
 						<h2>Exploit #4</h2>
-						<h3></h3>
+						<h3>Cross-site JavaScript injection using event handlers</h3>
 						<ul>
-							<li>Announced on </li>
-							<li>Announced by </li>
-							<li>Fixed in </li>
+							<li>Announced on April 13, 2006</li>
+							<li>Announced by shutdown</li>
+							<li>Fixed in
+								<ul>
+									<li>Firefox 1.0.8</li>
+									<li>Firefox 1.5</li>
+									<li>Mozilla Suite 1.7.13</li>
+									<li>SeaMonkey 1</li>
+									<li>Thunderbird 1.0.8</li>
+									<li>Thunderbird 1.5</li>
+								</ul>
+							</li>
 						</ul>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #4: </h4>
+							<h4>Exploit #4: Cross-site JavaScript injection using event handlers</h4>
 							<img src="pictures/exploit4.png" width="800">
 						</p>
 						<aside class="notes">
 
-							Source: 
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2006-09/
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #4: </h4>
+							<h4>Exploit #4: Cross-site JavaScript injection using event handlers</h4>
 							<img src="pictures/exploit4code.png" width="1400">
 						</p>
 						<aside class="notes">
 							
-							Source: 
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=311024
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #4: </h4>
+							<h4>Exploit #4: Cross-site JavaScript injection using event handlers</h4>
 							<h2>DEMO</h2>
 						</p>
 						<aside class="notes">
@@ -321,7 +379,7 @@
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #4: </h4>
+							<h4>Exploit #4: Cross-site JavaScript injection using event handlers</h4>
 							<h3>Solution</h3>
 						</p>
 						<aside class="notes">
@@ -332,37 +390,49 @@
 
 				<section>
 					<section>
+						<h2>Memory Corruption</h2>
+						<img src="pictures/confused.jpg" width="600">
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Exploit #5</h2>
-						<h3></h3>
+						<h3>Crashes with evidence of memory corruption</h3>
 						<ul>
-							<li>Announced on </li>
-							<li>Announced by </li>
-							<li>Fixed in </li>
+							<li>Announced on September 14, 2006</li>
+							<li>Announced by Mozilla Developers</li>
+							<li>Fixed in
+								<ul>
+									<li>Firefox 1.5.0.7</li>
+									<li>SeaMonkey 1.0.5</li>
+									<li>Thunderbird 1.5.0.7</li>
+								</ul>
+							</li>
 						</ul>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #5: </h4>
+							<h4>Exploit #5: Crashes with evidence of memory corruption</h4>
 							<img src="pictures/exploit5.png" width="800">
 						</p>
 						<aside class="notes">
-
-							Source: 
+							Out of an abundance of caution, the Mozilla team aimed to keep Firefox from crashing, both as a user experience point, but also because given enough effort, it was certainly possible that a malicious agent could cause a specific memory corruption, which left malicious code in memory to be executed later on.
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2006-64/
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #5: </h4>
+							<h4>Exploit #5: Crashes with evidence of memory corruption</h4>
 							<img src="pictures/exploit5code.png" width="1400">
 						</p>
 						<aside class="notes">
 							
-							Source: 
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=339130
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #5: </h4>
+							<h4>Exploit #5: Crashes with evidence of memory corruption</h4>
 							<h2>DEMO</h2>
 						</p>
 						<aside class="notes">
@@ -371,7 +441,7 @@
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #5: </h4>
+							<h4>Exploit #5: Crashes with evidence of memory corruption</h4>
 							<h3>Solution</h3>
 						</p>
 						<aside class="notes">
@@ -382,37 +452,43 @@
 
 				<section>
 					<section>
+						<h2>Misc</h2>
+						<img src="pictures/misc.jpg" width="600">
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Exploit #6</h2>
-						<h3></h3>
+						<h3>File stealing by changing input type</h3>
 						<ul>
-							<li>Announced on </li>
-							<li>Announced by </li>
-							<li>Fixed in </li>
+							<li>Announced on June 1, 2006</li>
+							<li>Announced by Chuck McAuley</li>
+							<li>Fixed in Firefox 1.5.0.4 and SeaMonkey 1.0.2</li>
 						</ul>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #6: </h4>
+							<h4>Exploit #6: File stealing by changing input type</h4>
 							<img src="pictures/exploit6.png" width="800">
 						</p>
 						<aside class="notes">
 
-							Source: 
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2006-41/
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #6: </h4>
+							<h4>Exploit #6: File stealing by changing input type</h4>
 							<img src="pictures/exploit6code.png" width="1400">
 						</p>
 						<aside class="notes">
 							
-							Source: 
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=334977
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #6: </h4>
+							<h4>Exploit #6: File stealing by changing input type</h4>
 							<h2>DEMO</h2>
 						</p>
 						<aside class="notes">
@@ -421,7 +497,7 @@
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #6: </h4>
+							<h4>Exploit #6: File stealing by changing input type</h4>
 							<h3>Solution</h3>
 						</p>
 						<aside class="notes">
@@ -433,36 +509,36 @@
 				<section>
 					<section>
 						<h2>Exploit #7</h2>
-						<h3></h3>
+						<h3>Code execution through deleted frame reference</h3>
 						<ul>
-							<li>Announced on </li>
-							<li>Announced by </li>
-							<li>Fixed in </li>
+							<li>Announced on July 25, 2006</li>
+							<li>Announced by Thilo Girmann</li>
+							<li>Fixed in Firefox 1.5.0.5 and SeaMonkey 1.0.3</li>
 						</ul>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #7: </h4>
+							<h4>Exploit #7: Code execution through deleted frame reference</h4>
 							<img src="pictures/exploit7.png" width="800">
 						</p>
 						<aside class="notes">
 
-							Source: 
+							Source: https://www.mozilla.org/en-US/security/advisories/mfsa2006-44/
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #7: </h4>
-							<img src="pictures/exploit7code.png" width="1400">
+							<h4>Exploit #7: Code execution through deleted frame reference</h4>
+							<img src="pictures/exploit7code.png" width="800">
 						</p>
 						<aside class="notes">
 							
-							Source: 
+							Source: https://bugzilla.mozilla.org/show_bug.cgi?id=338288
 						</aside>
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #7: </h4>
+							<h4>Exploit #7: Code execution through deleted frame reference</h4>
 							<h2>DEMO</h2>
 						</p>
 						<aside class="notes">
@@ -471,7 +547,7 @@
 					</section>
 					<section>
 						<p>
-							<h4>Exploit #7: </h4>
+							<h4>Exploit #7: Code execution through deleted frame reference</h4>
 							<h3>Solution</h3>
 						</p>
 						<aside class="notes">
